@@ -5,26 +5,24 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
-const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173').split(',');
+// Each configured origin also allows its www/non-www twin, so CORS_ORIGIN only
+// needs to list one form of the domain.
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean)
+  .flatMap((origin) =>
+    origin.includes('://www.')
+      ? [origin, origin.replace('://www.', '://')]
+      : [origin, origin.replace('://', '://www.')]
+  );
+
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 app.use('/api', routes);
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
-
-// TEMP debug route — remove after diagnosing CORS_ORIGIN parsing issue
-app.get('/debug-cors', (req, res) => {
-  res.json({
-    raw: process.env.CORS_ORIGIN,
-    requestOrigin: req.headers.origin || null,
-    list: allowedOrigins.map((o) => ({
-      value: o,
-      length: o.length,
-      codes: [...o].map((c) => c.charCodeAt(0)),
-    })),
-  });
-});
 
 // 404 fallback
 app.use((req, res) => {
