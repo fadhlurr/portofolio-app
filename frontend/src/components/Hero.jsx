@@ -1,4 +1,7 @@
 export default function Hero() {
+  // Ganti URL di bawah ini dengan URL foto dari Supabase Storage kamu
+  const profileUrl = "GANTI_DENGAN_URL_SUPABASE_KAMU";
+
   return (
     <header className="hero">
       <div className="wrap hero-grid">
@@ -37,7 +40,11 @@ export default function Hero() {
 
         <div className="hero-photo-wrap">
           <div className="hero-photo">
-            <span className="glyph">FS</span>
+            <img
+              src={profileUrl}
+              alt="Fadhlur Selian"
+              className="hero-photo-img"
+            />
           </div>
           <div className="avail-card">
             <div className="avail-top"><span className="dot"></span> Available for work</div>
