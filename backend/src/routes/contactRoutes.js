@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const adminAuth = require('../middleware/adminAuth');
+const requireAuth = require('../middleware/requireAuth');
 const {
   submitMessage,
   getAllMessages,
@@ -9,8 +9,8 @@ const {
 } = require('../controllers/contactController');
 
 router.post('/', submitMessage);          // public
-router.get('/', adminAuth, getAllMessages);
-router.put('/:id/read', adminAuth, markAsRead);
-router.delete('/:id', adminAuth, deleteMessage);
+router.get('/', requireAuth, getAllMessages);
+router.put('/:id/read', requireAuth, markAsRead);
+router.delete('/:id', requireAuth, deleteMessage);
 
 module.exports = router;

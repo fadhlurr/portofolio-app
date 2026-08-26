@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const adminAuth = require('../middleware/adminAuth');
+const requireAuth = require('../middleware/requireAuth');
 const {
   getAllSkills,
   createSkill,
@@ -9,8 +9,8 @@ const {
 } = require('../controllers/skillController');
 
 router.get('/', getAllSkills);
-router.post('/', adminAuth, createSkill);
-router.put('/:id', adminAuth, updateSkill);
-router.delete('/:id', adminAuth, deleteSkill);
+router.post('/', requireAuth, createSkill);
+router.put('/:id', requireAuth, updateSkill);
+router.delete('/:id', requireAuth, deleteSkill);
 
 module.exports = router;

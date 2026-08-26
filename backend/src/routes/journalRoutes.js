@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const adminAuth = require('../middleware/adminAuth');
+const requireAuth = require('../middleware/requireAuth');
 const {
   getAllPosts,
   getPostBySlug,
@@ -11,8 +11,8 @@ const {
 
 router.get('/', getAllPosts);
 router.get('/:slug', getPostBySlug);
-router.post('/', adminAuth, createPost);
-router.put('/:id', adminAuth, updatePost);
-router.delete('/:id', adminAuth, deletePost);
+router.post('/', requireAuth, createPost);
+router.put('/:id', requireAuth, updatePost);
+router.delete('/:id', requireAuth, deletePost);
 
 module.exports = router;
