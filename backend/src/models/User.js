@@ -22,7 +22,10 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
 }, {
-  tableName: 'users',
+  // NOTE: bukan 'users' — DB Supabase ini dishare sama app relationship-wrapped,
+  // yang udah punya public.users sendiri (id integer, full_name, nickname).
+  // Nama terpisah biar dua app gak rebutan tabel.
+  tableName: 'admin_users',
   timestamps: true,
 });
 

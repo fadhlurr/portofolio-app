@@ -9,8 +9,10 @@ async function start() {
     await sequelize.authenticate();
     console.log('Database connected.');
 
-    // Creates tables if they don't exist yet, and adds missing columns.
-    // For a first run this is enough — no separate migration step needed.
+    // Creates tables that don't exist yet. It does NOT alter existing tables,
+    // so a model change on an existing table needs a manual migration.
+    // Never switch this to sync({ alter: true }): this database is shared with
+    // the relationship-wrapped app, and alter would rewrite its tables too.
     await sequelize.sync();
     console.log('Models synced with database.');
 
