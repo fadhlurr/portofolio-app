@@ -3,15 +3,15 @@ export default function About() {
     <section id="about">
       <div className="wrap about-grid">
         <div>
-          <span className="tag">About</span>
-          <h2 className="sec-title">Fokus & Tujuan</h2>
-          <p className="sec-desc">Sedikit cerita tentang siapa aku dan apa yang aku kejar lewat kerjaan.</p>
+          <span className="tag">Tentang</span>
+          <h2 className="sec-title">Latar Belakang & Fokus</h2>
+          <p className="sec-desc">Cerita singkat siapa saya dan apa yang saya kerjakan.</p>
           <div className="about-num serif">01</div>
         </div>
         <div>
-          <p>Aku <strong>Fadhlur Selian</strong>, seorang developer yang senang mengubah data dan ide sederhana menjadi pengalaman digital yang terasa personal — bukan cuma fungsional.</p>
-          <p>Fokus utamaku ada di persimpangan antara <strong>engineering</strong> dan <strong>storytelling visual</strong>: bagaimana sebuah interface bisa menyampaikan sesuatu yang bermakna, bukan sekadar menampilkan data mentah.</p>
-          <p>Di luar coding, aku suka mengamati detail kecil dari kebiasaan sehari-hari — dan mencari cara untuk mengubahnya jadi sesuatu yang layak diceritakan lewat produk digital.</p>
+          <p>Saya <strong>Fadhlur Rahmanda Selian</strong>, lulusan Teknik Informatika IT PLN dan alumni bootcamp <strong>Hacktiv8</strong>. Sekarang fokus sebagai full-stack developer, terbiasa membangun aplikasi web dari sisi backend (Node.js, Express, PostgreSQL) sampai frontend (React, Next.js).</p>
+          <p>Pengalaman kerja saya dimulai dari beberapa program internship — mulai dari mengelola data karyawan di <strong>PT PLN UPDL Jakarta</strong>, memperbaiki bug ETP di <strong>PT MAP Zona Adiperkasa</strong>, sampai menangani customer service via WhatsApp di <strong>PT TOYS Games Indonesia</strong>. Dari sana saya belajar bahwa engineering yang baik bukan cuma soal kode yang jalan, tapi juga soal memahami masalah pengguna.</p>
+          <p>Di luar itu, saya aktif berorganisasi di <strong>HIMAKA IT PLN</strong> sebagai Head of Ministry of Foreign Affairs — pengalaman yang mengajarkan pentingnya komunikasi dan kerja sama tim, dua hal yang ternyata sama pentingnya dengan skill teknis.</p>
         </div>
       </div>
     </section>

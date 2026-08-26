@@ -3,7 +3,7 @@ import { api } from '../api/client';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
   function handleChange(e) {
@@ -28,12 +28,13 @@ export default function Contact() {
     <section id="contact">
       <div className="wrap contact-grid">
         <div className="contact-info">
-          <span className="tag">Contact</span>
+          <span className="tag">Kontak</span>
           <h2 className="sec-title">Yuk, Ngobrol</h2>
-          <p>Punya project atau ide yang ingin didiskusikan? Kirim pesan aja, biasanya aku balas dalam 1–2 hari kerja.</p>
-          <div className="info-line"><strong>Email</strong>&nbsp;hello@bbbyfadhlur.com</div>
-          <div className="info-line"><strong>Lokasi</strong>&nbsp;Indonesia (Remote)</div>
-          <div className="info-line"><strong>Status</strong>&nbsp;Available for work</div>
+          <p>Punya project atau ide yang ingin didiskusikan? Kirim pesan aja, biasanya saya balas dalam 1–2 hari kerja.</p>
+          <div className="info-line"><strong>Email</strong>&nbsp;fadhlurs45@gmail.com</div>
+          <div className="info-line"><strong>WhatsApp</strong>&nbsp;+62 821-2412-0952</div>
+          <div className="info-line"><strong>Lokasi</strong>&nbsp;Jakarta Barat, Indonesia</div>
+          <div className="info-line"><strong>Status</strong>&nbsp;Terbuka untuk pekerjaan</div>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -50,7 +51,7 @@ export default function Contact() {
             <textarea id="message" name="message" placeholder="Ceritain project atau ide kamu..." value={form.message} onChange={handleChange} required />
           </div>
 
-          {status === 'success' && <p className="form-status success">Pesan terkirim, terima kasih! Aku akan balas secepatnya.</p>}
+          {status === 'success' && <p className="form-status success">Pesan terkirim, terima kasih! Saya akan balas secepatnya.</p>}
           {status === 'error' && <p className="form-status error">{errorMsg}</p>}
 
           <button type="submit" className="submit-btn" disabled={status === 'sending'}>

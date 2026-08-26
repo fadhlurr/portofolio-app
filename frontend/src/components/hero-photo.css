@@ -1,0 +1,12 @@
+/* ============================================
+   TAMBAHAN CSS: styling foto profil di hero
+   Paste ini di PALING BAWAH file:
+   frontend/src/styles/global.css
+   ============================================ */
+
+.hero-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
