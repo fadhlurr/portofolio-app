@@ -27,11 +27,33 @@ async function connectWithRetry(attempt = 1) {
     await sequelize.sync();
     console.log('Models synced with database.');
   } catch (err) {
+    if (attempt === 1) logConnectionTarget();
     // Back off 5s, 10s, 20s, 40s, then every 60s.
     const delay = Math.min(5000 * 2 ** (attempt - 1), 60000);
     console.error(
       `Database connection attempt ${attempt} failed: ${err.message}. Retrying in ${delay / 1000}s.`
     );
     setTimeout(() => connectWithRetry(attempt + 1), delay);
+  }
+}
+
+// Prints which database the process is actually pointed at, so a stale or
+// mistyped DATABASE_URL is visible in the deploy logs. Never logs the
+// password itself — only its length and first/last characters.
+function logConnectionTarget() {
+  try {
+    const url = new URL(process.env.DATABASE_URL);
+    console.error(
+      'Connecting as user=%s host=%s port=%s db=%s passwordLength=%d passwordEdges=%s..%s',
+      url.username,
+      url.hostname,
+      url.port,
+      url.pathname.slice(1),
+      url.password.length,
+      url.password.slice(0, 3),
+      url.password.slice(-3)
+    );
+  } catch (err) {
+    console.error('DATABASE_URL is missing or not a valid URL.');
   }
 }
