@@ -33,7 +33,14 @@ app.get('/health/db', async (req, res) => {
   const { sequelize } = require('./models');
   const db = require('./config/database');
   const crypto = require('crypto');
-  const out = { source: db.DATABASE_URL_SOURCE };
+  // Bumped by hand each deploy, so the response says which build answered.
+  const out = {
+    build: 'b816ad7-plus-envnames',
+    source: db.DATABASE_URL_SOURCE,
+    // Names only, never values: shows whether the variable set the dashboard
+    // lists is the one this container actually received.
+    dbEnvNames: Object.keys(process.env).filter((k) => /DATABASE|PORTOFOLIO/i.test(k)),
+  };
   try {
     const url = new URL(db.DATABASE_URL);
     out.user = url.username;
