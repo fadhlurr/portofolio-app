@@ -31,10 +31,11 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 // Railway credential mismatch is resolved.
 app.get('/health/db', async (req, res) => {
   const { sequelize } = require('./models');
+  const db = require('./config/database');
   const crypto = require('crypto');
-  const out = {};
+  const out = { source: db.DATABASE_URL_SOURCE };
   try {
-    const url = new URL(process.env.DATABASE_URL);
+    const url = new URL(db.DATABASE_URL);
     out.user = url.username;
     out.host = url.hostname;
     out.port = url.port;
