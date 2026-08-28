@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { api } from '../api/client';
+import RelatedLink from '../components/RelatedLink';
+import { PROJECT_TO_JOURNAL } from '../relatedContent';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
   const [project, setProject] = useState(null);
   const [status, setStatus] = useState('loading');
+
+  const relatedPost = PROJECT_TO_JOURNAL[slug];
 
   useEffect(() => {
     setStatus('loading');
@@ -46,6 +50,14 @@ export default function ProjectDetail() {
                 <a href={project.repoUrl} target="_blank" rel="noreferrer" className="link-underline">Source Code</a>
               )}
             </div>
+          )}
+
+          {relatedPost && (
+            <RelatedLink
+              to={`/journal/${relatedPost.slug}`}
+              label="Baca prosesnya"
+              title={relatedPost.title}
+            />
           )}
 
           <div className="detail-body">{project.content || project.description}</div>

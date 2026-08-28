@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { api } from '../api/client';
+import RelatedLink from '../components/RelatedLink';
+import { JOURNAL_TO_PROJECT } from '../relatedContent';
 
 function formatDate(dateStr) {
   if (!dateStr) return '';
@@ -11,6 +13,8 @@ export default function JournalDetail() {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [status, setStatus] = useState('loading');
+
+  const relatedProject = JOURNAL_TO_PROJECT[slug];
 
   useEffect(() => {
     setStatus('loading');
@@ -35,7 +39,15 @@ export default function JournalDetail() {
         <>
           <div className="journal-date" style={{ marginBottom: '14px' }}>{formatDate(post.publishedAt)}</div>
           <h1 className="detail-title serif">{post.title}</h1>
-          <div className="detail-body">{post.content}</div>
+          <div className="detail-body" style={{ marginBottom: '36px' }}>{post.content}</div>
+
+          {relatedProject && (
+            <RelatedLink
+              to={`/projects/${relatedProject.slug}`}
+              label="Project yang dibahas"
+              title={relatedProject.title}
+            />
+          )}
         </>
       )}
     </div>

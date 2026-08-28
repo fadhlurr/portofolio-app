@@ -110,11 +110,6 @@ section{padding:96px 0;border-top:1px solid var(--line);}
 /* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
 .skill-cat h4{font-family:'Fraunces',serif;font-size:17px;margin:0 0 20px;color:var(--accent);}
-.skill-item{margin-bottom:16px;}
-.skill-top{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:7px;}
-.skill-top span:last-child{color:var(--ink-soft);}
-.bar-track{height:5px;background:var(--cream-2);border-radius:99px;overflow:hidden;}
-.bar-fill{height:100%;background:var(--accent);border-radius:99px;}
 
 /* JOURNAL */
 .journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}

@@ -17,6 +17,12 @@ export default function Hero() {
                 <path d="M7 17L17 7M17 7H8M17 7v9" />
               </svg>
             </a>
+            <a href="/cv-fadhlur-rahmanda-selian.pdf" download className="link-underline">
+              Unduh CV
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" />
+              </svg>
+            </a>
             <a href="#about" className="link-underline">
               Tentang Saya
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">

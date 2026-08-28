@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/client';
+import './skill-chips.css';
 
 export default function Skills() {
   const [skills, setSkills] = useState([]);
@@ -21,7 +22,7 @@ export default function Skills() {
     <section id="skills">
       <div className="wrap">
         <span className="tag">Skills</span>
-        <h2 className="sec-title">Tech Stack & Tools</h2>
+        <h2 className="sec-title">Tech Stack &amp; Tools</h2>
         <p className="sec-desc">Tools yang paling sering kupakai untuk membangun dari ide sampai produksi.</p>
 
         {status === 'loading' && <p className="empty-state">Memuat skills...</p>}
@@ -32,14 +33,15 @@ export default function Skills() {
             {Object.entries(grouped).map(([category, items]) => (
               <div className="skill-cat" key={category}>
                 <h4 className="serif">{category}</h4>
-                {items.map((s) => (
-                  <div className="skill-item" key={s.id}>
-                    <div className="skill-top"><span>{s.name}</span><span>{s.proficiency}%</span></div>
-                    <div className="bar-track">
-                      <div className="bar-fill" style={{ width: `${s.proficiency}%` }} />
-                    </div>
-                  </div>
-                ))}
+                <div className="skill-chips">
+                  {/* proficiency tidak ditampilkan, tapi dipakai untuk urutan:
+                      yang paling dikuasai tampil lebih dulu */}
+                  {[...items]
+                    .sort((a, b) => (b.proficiency ?? 0) - (a.proficiency ?? 0))
+                    .map((s) => (
+                      <span className="skill-chip" key={s.id}>{s.name}</span>
+                    ))}
+                </div>
               </div>
             ))}
           </div>
