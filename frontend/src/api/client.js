@@ -1,6 +1,16 @@
-// Trim whitespace and any trailing slash: a newline pasted into the Vercel
-// dashboard alongside the URL is invisible there but breaks every request.
-const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:4000/api')
+// Prefer VITE_PORTOFOLIO_API_URL over VITE_API_URL.
+//
+// VITE_API_URL was saved in Vercel as a Secret, which the dashboard refuses to
+// convert to Config and refuses to delete — so it is stuck holding the address
+// of a Railway service we no longer use. Reading a fresh name sidesteps it.
+//
+// Trim whitespace and any trailing slash too: a newline pasted in alongside
+// the URL is invisible in the dashboard but breaks every request.
+const API_URL = (
+  import.meta.env.VITE_PORTOFOLIO_API_URL ||
+  import.meta.env.VITE_API_URL ||
+  'http://localhost:4000/api'
+)
   .trim()
   .replace(/\/+$/, '');
 
