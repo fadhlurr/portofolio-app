@@ -42,9 +42,11 @@ async function connectWithRetry(attempt = 1) {
 // password itself — only its length and first/last characters.
 function logConnectionTarget() {
   try {
-    const url = new URL(process.env.DATABASE_URL);
+    const db = require('./config/database');
+    const url = new URL(db.DATABASE_URL);
     console.error(
-      'Connecting as user=%s host=%s port=%s db=%s passwordLength=%d passwordEdges=%s..%s',
+      'Connecting via %s as user=%s host=%s port=%s db=%s passwordLength=%d passwordEdges=%s..%s',
+      db.DATABASE_URL_SOURCE,
       url.username,
       url.hostname,
       url.port,
@@ -54,6 +56,6 @@ function logConnectionTarget() {
       url.password.slice(-3)
     );
   } catch (err) {
-    console.error('DATABASE_URL is missing or not a valid URL.');
+    console.error('No usable database URL: set PORTOFOLIO_DATABASE_URL or DATABASE_URL.');
   }
 }

@@ -24,49 +24,6 @@ app.use('/api', routes);
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// TEMPORARY diagnostic: reports which database this process is pointed at and
-// whether it can reach it. Deliberately exposes no secret — the password is
-// reduced to its length and a SHA-256 prefix, which is enough to compare
-// against a known-good value but useless to an attacker. Remove once the
-// Railway credential mismatch is resolved.
-app.get('/health/db', async (req, res) => {
-  const { sequelize } = require('./models');
-  const db = require('./config/database');
-  const crypto = require('crypto');
-  // Bumped by hand each deploy, so the response says which build answered.
-  const out = {
-    build: 'b816ad7-plus-envnames',
-    source: db.DATABASE_URL_SOURCE,
-    // Names only, never values: shows whether the variable set the dashboard
-    // lists is the one this container actually received.
-    dbEnvNames: Object.keys(process.env).filter((k) => /DATABASE|PORTOFOLIO/i.test(k)),
-  };
-  try {
-    const url = new URL(db.DATABASE_URL);
-    out.user = url.username;
-    out.host = url.hostname;
-    out.port = url.port;
-    out.database = url.pathname.slice(1);
-    out.passwordLength = url.password.length;
-    out.passwordFingerprint = crypto
-      .createHash('sha256')
-      .update(decodeURIComponent(url.password))
-      .digest('hex')
-      .slice(0, 12);
-  } catch (err) {
-    out.error = 'DATABASE_URL missing or unparseable';
-    return res.json(out);
-  }
-  try {
-    await sequelize.authenticate();
-    out.connected = true;
-  } catch (err) {
-    out.connected = false;
-    out.connectionError = err.message;
-  }
-  res.json(out);
-});
-
 // 404 fallback
 app.use((req, res) => {
   res.status(404).json({ error: `Route not found: ${req.method} ${req.originalUrl}` });
