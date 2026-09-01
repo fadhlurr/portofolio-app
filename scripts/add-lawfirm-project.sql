@@ -6,9 +6,12 @@
 -- Kolom id, createdAt, dan updatedAt tidak punya default di tabel ini, jadi
 -- ketiganya harus diisi eksplisit - Sequelize biasanya yang mengisinya.
 --
--- demoUrl sengaja NULL. Aturan PRD 3.3: demo yang mengarah ke halaman error
--- lebih buruk daripada tidak ada tombol demo, dan situsnya memang belum
--- ditayangkan. Isi kolom ini nanti setelah demo benar-benar hidup.
+-- demoUrl diisi setelah demonya benar-benar hidup dan diverifikasi memuat data,
+-- bukan sekadar setelah deploy berhasil. Aturan PRD 3.3: demo yang mengarah ke
+-- halaman error lebih buruk daripada tidak ada tombol demo.
+--
+-- Yang ditunjuk adalah demo bertanda jelas, bukan kantor hukum sungguhan:
+-- situsnya menolak diindeks dan menampilkan banner peringatan di setiap halaman.
 
 INSERT INTO projects (
   id, title, slug, category, description, content,
@@ -34,7 +37,7 @@ Backend listen lebih dulu, koneksi database menyusul dengan backoff 5s sampai 60
 
 Kegagalan konfigurasi juga diterjemahkan jadi satu baris saran - password salah, database belum ada, server tidak menjawab - bukan stack trace driver sepanjang empat puluh baris.',
   ARRAY['React','Vite','Express','Sequelize','PostgreSQL','JWT']::varchar[],
-  NULL,
+  'https://lawfirm-app-eta.vercel.app',
   'https://github.com/fadhlurr/lawfirm-app',
   true,
   2,
