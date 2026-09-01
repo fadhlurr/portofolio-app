@@ -12,6 +12,10 @@
   <!-- Favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <!-- Safari meminta /favicon.ico di akar domain. Tanpa berkasnya, rewrite SPA
+       menangkap permintaan itu dan mengirim index.html, sehingga Safari menerima
+       HTML di tempat yang seharusnya gambar lalu tidak menampilkan ikon apa pun. -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#F4EFE5" media="(prefers-color-scheme: light)" />
