@@ -10,12 +10,17 @@
   <link rel="canonical" href="https://www.bbbyfadhlur.com/" />
 
   <!-- Favicon -->
+  <!-- Urutannya disengaja: .ico lebih dulu.
+       Safari memilih dari daftar ini, dan dukungannya terhadap favicon SVG
+       tidak dapat diandalkan; kalau SVG yang terpilih dan gagal dirender, Safari
+       tidak mundur ke tag berikutnya - tabnya cuma kosong. Browser yang mendukung
+       SVG tetap menemukannya di baris kedua dan memilih yang beresolusi bebas.
+       .ico juga wajib ada sebagai berkas: Safari memintanya di akar domain apa
+       pun isi tag di sini, dan tanpa berkasnya rewrite SPA akan menjawabnya
+       dengan index.html. -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
-  <!-- Safari meminta /favicon.ico di akar domain. Tanpa berkasnya, rewrite SPA
-       menangkap permintaan itu dan mengirim index.html, sehingga Safari menerima
-       HTML di tempat yang seharusnya gambar lalu tidak menampilkan ikon apa pun. -->
-  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#F4EFE5" media="(prefers-color-scheme: light)" />
